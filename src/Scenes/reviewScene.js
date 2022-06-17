@@ -85,17 +85,12 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo }, ref) => {
         sceneStart: () => {
             baseObject.current.className = 'aniObject'
 
-
             timerList[0] = setTimeout(activeBtnFunc, 1500);
 
             setRepeatType(2)
 
-            audioList.bodyAudio1.src = prePathUrl() + "sounds/main/common/review0.mp3"
-            audioList.bodyAudio2.src = prePathUrl() + "sounds/main/common/review1.mp3"
-
             imageCount = 0;
             isEffectPassed = true;
-
             clickedList = []
 
             setRepeatAudio(audioList.commonAudio3)
@@ -109,19 +104,13 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo }, ref) => {
         if (!isRendered) {
             isRendered = true;
             timerList[6] = setTimeout(() => {
-                audioList.bodyAudio1.play();
-
-                // timerList[7] = setTimeout(() => {
-                //     audioList.bodyAudio2.play();
+                audioList.reviewAudio.play();
 
                 timerList[8] = setTimeout(() => {
                     audioList.commonAudio3.play()
                     startRepeatAudio()
-                    // }, audioList.bodyAudio2.duration * 1000 + 300);
-                }, audioList.bodyAudio1.duration * 1000 + 500);
+                }, audioList.reviewAudio.duration * 1000 + 500);
             }, 1000);
-
-            // baseObject.current.className = 'aniObject'
         }
     }
 

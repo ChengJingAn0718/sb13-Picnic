@@ -139,8 +139,9 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
         if (!isDisabled)
             timerList[3] = setTimeout(() => {
                 isEven = !isEven
+
                 cIndex = isEven ? 0 : 1
-                
+
                 bodyAudio1s[cIndex].play().catch(error => { });
                 setTimeout(() => {
                     
@@ -208,7 +209,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
                 }
             }, 5000);
 
-        }, bodyAudio2s[cIndex].duration * 1000);
+        }, bodyAudio2s[cIndex].duration * 1000 + 300);
     }
 
     //2022-3-27 modified by Cheng...
@@ -241,7 +242,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
 
         stepCount = 0
 
-        setPrimaryAudio(bodyAudio1s[cIndex])
+        setPrimaryAudio(bodyAudio1s[0])
         setRepeatAudio(audioList.commonAudio2)
 
         setTimeout(() => {
@@ -253,14 +254,15 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
 
             setTimeout(() => {
 
-                bodyAudio1s[cIndex].play().catch(error => { });
+                bodyAudio1s[0].play().catch(error => { });
                 setTimeout(() => {
 
                     bodyAudio1s[1].src = getAudioPath('question/2/1')  //question
                     bodyAudio2s[1].src = getAudioPath('question/2/2')  //answer
 
                     playZoomAnimation();
-                }, bodyAudio1s[cIndex].duration * 1000 + 2000);
+
+                }, bodyAudio1s[0].duration * 1000 + 2000);
             }, 3000);
 
         }, 500);

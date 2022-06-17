@@ -11,10 +11,10 @@ import Excellent from "../Scenes/excellent"
 import WellDone from "../Scenes/welldone"
 
 import { MusicButton } from './CommonButtons';
-
-var __geo;
+import { prePathUrl } from './CommonFunctions';
 import { UserContext } from "./BaseShot";
 
+var __geo;
 let currentSceneNum = 0;
 
 const App = React.forwardRef(({ geo, _startTransition, baseGeo, bgLoaded }, ref) => {
@@ -36,6 +36,7 @@ const App = React.forwardRef(({ geo, _startTransition, baseGeo, bgLoaded }, ref)
 
       sceneList[1].current.sceneLoad()
       sceneList[0].current.sceneLoad()
+
 
       return () => {
       }
@@ -120,6 +121,24 @@ const App = React.forwardRef(({ geo, _startTransition, baseGeo, bgLoaded }, ref)
           :
           <Excellent nextFunc={goHome} loadFunc={loadFunc} _baseGeo={baseGeo} _geo={__geo} />
       }
+
+
+      < div
+
+        className={
+          isGameFinished ? 'aniObject' : 'hideObject'
+        }
+        style={{
+          position: "fixed",
+          width: baseGeo.width + "px",
+          height: baseGeo.height + 'px',
+          left: baseGeo.left + "px",
+          top: baseGeo.top + "px",
+        }}>
+        <img width={"100%"}
+          src={prePathUrl() + "images/bg/excellent.png"}
+        />
+      </div>
 
       <MusicButton ref={musicRef} _geo={__geo} backAudio={audioList.backAudio} />
     </div >
