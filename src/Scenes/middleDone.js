@@ -23,30 +23,33 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc }, ref) => {
             setSceneLoad(true)
         },
         sceneStart: () => {
-            audioList.bodyAudio1.src = getAudioPath('common/middle')
+            
 
             parentRef.current.className = 'aniObject'
             spakleRef.current.className = 'excellentText'
 
             loadFunc();
 
-
-            setExtraVolume(audioList.clapAudio, 1.5)
-            setExtraVolume(audioList.yeahAudio, 1.5)
-            setExtraVolume(audioList.tingAudio, 1.5)
-            setExtraVolume(audioList.buzzAudio, 1.5)
-            setExtraVolume(audioList.successAudio, 1.5)
-
             timerList[0] = setTimeout(() => {
-                audioList.bodyAudio1.play().catch(error => { });
+
+                audioList.middleAudio.play().catch(error => { });
+
+                setExtraVolume(audioList.clapAudio, 2)
+                setExtraVolume(audioList.yeahAudio, 2)
+                setExtraVolume(audioList.tingAudio, 2)
+                setExtraVolume(audioList.buzzAudio, 2)
+                setExtraVolume(audioList.successAudio, 2)
+
+
                 timerList[1] = setTimeout(() => {
                     nextFunc();
-                }, audioList.bodyAudio1.duration * 1000 + 2500);
-            }, 2500);
+                }, audioList.middleAudio.duration * 1000 + 2500);
+            }, 3000);
         },
 
         sceneEnd: () => {
-            audioList.bodyAudio1.pause();
+
+            audioList.middleAudio.src = getAudioPath('common/welldone')
 
             for (let i = 0; i < timerList.length; i++)
                 clearTimeout(timerList[i])

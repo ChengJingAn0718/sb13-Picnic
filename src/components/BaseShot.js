@@ -38,6 +38,8 @@ let commonAudio1 = new loadSound('common/common1');
 let commonAudio2 = new loadSound('common/common2');
 let commonAudio3 = new loadSound('common/common3');
 
+let middleAudio = new loadSound('common/middle');
+
 let subAudioList = []
 
 
@@ -76,6 +78,8 @@ let audioList = {
     commonAudio1,
     commonAudio2,
     commonAudio3,
+
+    middleAudio,
 
     successAudio,
     ...subAudioList

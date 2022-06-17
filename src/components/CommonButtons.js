@@ -85,6 +85,7 @@ const MusicButton = React.forwardRef((prop, ref) => {
                 prop.backAudio.play().catch(error => { });
 
                 _setBackgroundPlaying(true);
+                setExtraVolume(prop.backAudio, 1.5)
 
             }, 500);
             setTimeout(() => {

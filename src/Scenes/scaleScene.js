@@ -88,9 +88,9 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
         sceneStart: () => {
 
 
-            setExtraVolume(audioList.bodyAudio1, 2)
-            setExtraVolume(audioList.bodyAudio2, 2)
-            setExtraVolume(audioList.bodyAudio3, 2)
+            setExtraVolume(audioList.bodyAudio1, 4)
+            setExtraVolume(audioList.bodyAudio2, 4)
+            setExtraVolume(audioList.bodyAudio3, 4)
 
             loadFunc()
 
@@ -241,7 +241,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
 
                                     setTimeout(() => {
                                         nextFunc()
-                                    }, 5000);
+                                    }, 6000);
 
                                 }, 2000);
                             }
@@ -272,7 +272,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
                                 blackWhiteObject.current.className = 'hide'
                                 setTimeout(() => {
                                     showIndividualImage()
-                                }, 2000);
+                                }, 3000);
 
                             }
                         }, 500);
@@ -342,17 +342,6 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
                             <BaseImage
                                 url={'bg/base.png'}
                             />
-
-                            {/* {
-                        outLineRefList.map(
-                            (value, index) =>
-                                <BaseImage
-                                    className='hideObject'
-                                    ref={outLineRefList[index]}
-                                />
-                        )
-
-                    } */}
 
                         </div>
                     </div>
