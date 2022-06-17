@@ -94,7 +94,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
 
 
             setExtraVolume(audioList.bodyAudio1, 4)
-            setExtraVolume(audioList.bodyAudio2, 4)
+            setExtraVolume(audioList.bodyAudio2, 3.5)
             setExtraVolume(audioList.bodyAudio3, 4)
             
 
@@ -106,10 +106,12 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
             audioList.bodyAudio2.src = getAudioPath('intro/2');
 
             bodyAudios[0].src = getAudioPath('intro/3');
+
             blackWhiteObjects[0].current.style.WebkitMaskImage = 'url("' +
                 returnImgPath(maskPathList[currentMaskNum][0], true) + '")'
 
             bodyAudios[1].src = getAudioPath('intro/4');
+
             blackWhiteObjects[1].current.style.WebkitMaskImage = 'url("' +
                 returnImgPath(maskPathList[currentMaskNum + 1][0], true) + '")'
 
@@ -117,6 +119,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
             setTimeout(() => {
                 audioList.bodyAudio2.play()
                 setTimeout(() => {
+                    setExtraVolume(audioList.bodyAudio2, 4)
                     showIndividualImage()
                 }, audioList.bodyAudio2.duration * 1000 + 1000);
             }, 3000);

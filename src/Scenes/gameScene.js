@@ -138,9 +138,12 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
 
         if (!isDisabled)
             timerList[3] = setTimeout(() => {
+                isEven = !isEven
+                cIndex = isEven ? 0 : 1
+                
                 bodyAudio1s[cIndex].play().catch(error => { });
                 setTimeout(() => {
-                    isEven = !isEven
+                    
                     playZoomAnimation();
 
                 }, bodyAudio1s[cIndex].duration * 1000 + 2000);
