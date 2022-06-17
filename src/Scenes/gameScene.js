@@ -72,7 +72,6 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
             startSecondPart()
 
             loadFunc()
-
          
             setExtraVolume(audioList.bodyAudio4, 4)
 
@@ -90,7 +89,6 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
     const playZoomAnimation = () => {
         cIndex = isEven ? 0 : 1
         let imageNum = 0;
-
 
         blackWhiteObject.current.className = 'hideMask'
         baseColorImgRef.current.setClass('hideObject')
