@@ -20,6 +20,8 @@ let isDisabled = false;
 let isEven = true;
 let cIndex = 0;
 
+const qSIndex = 14 // question-answer start index...
+
 const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => {
     const audioList = useContext(UserContext)
 
@@ -31,14 +33,6 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
     const buttonRefs = useRef()
     const starRefs = Array.from({ length: 9 }, ref => useRef())
     const optionRef = useRef()
-
-    const bodyAudio1s = [
-        audioList.bodyAudio1, audioList.bodyAudio3,
-    ]
-
-    const bodyAudio2s = [
-        audioList.bodyAudio2, audioList.bodyAudio4,
-    ]
 
     const aniImageLists = [
         Array.from({ length: 4 }, ref => useRef()),
@@ -72,11 +66,13 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
             startSecondPart()
 
             loadFunc()
-         
-            setExtraVolume(audioList.bodyAudio4, 4)
 
             setExtraVolume(audioList.commonAudio2, 4)
             setExtraVolume(audioList.commonAudio1, 4)
+
+            for (let i = qSIndex; i < qSIndex + 18; i++)
+                setExtraVolume(audioList[i], 4)
+                
         },
         sceneEnd: () => {
             setSceneLoad(false)
@@ -118,7 +114,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
             if (stepCount == 0)
                 audioList.commonAudio2.play();
 
-            setPrimaryAudio(bodyAudio1s[cIndex])
+            setPrimaryAudio(audioList[qSIndex + stepCount * 2])
             startRepeatAudio()
         }, 500);
 
@@ -136,16 +132,16 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
 
         if (!isDisabled)
             timerList[3] = setTimeout(() => {
-                isEven = !isEven
 
+                isEven = !isEven
                 cIndex = isEven ? 0 : 1
 
-                bodyAudio1s[cIndex].play().catch(error => { });
-                setTimeout(() => {
-                    
-                    playZoomAnimation();
+                audioList[qSIndex + stepCount * 2].play().catch(error => { });
 
-                }, bodyAudio1s[cIndex].duration * 1000 + 2000);
+                setTimeout(() => {
+                    playZoomAnimation();
+                }, audioList[qSIndex + stepCount * 2].duration * 1000 + 2000);
+
             }, 2500);
     }
 
@@ -157,25 +153,19 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
         clearTimeout(timerList[2])
 
         stopRepeatAudio()
-
         audioList.commonAudio2.pause();
+        audioList[qSIndex + stepCount * 2 + 1].play().catch(error => { });
 
 
-        stepCount++
-        if (stepCount < questionPartCount - 1)
-            bodyAudio1s[cIndex].src = getAudioPath('question/' + (stepCount + 2) + "/1")  //question
 
-        bodyAudio2s[cIndex].play().catch(error => { });
         buttonRefs.current.style.pointerEvents = 'none'
 
         setTimeout(() => {
+            stepCount++
             audioList.successAudio.play().catch(error => { })
 
             starRefs[totalStep].current.setClass('show')
             totalStep++
-
-            if (stepCount < questionPartCount - 1)
-                bodyAudio2s[cIndex].src = getAudioPath('question/' + (stepCount + 2) + "/2") //answer
 
             setTimeout(() => {
                 audioList.successAudio.pause();
@@ -207,7 +197,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
                 }
             }, 5000);
 
-        }, bodyAudio2s[cIndex].duration * 1000 + 300);
+        }, audioList[qSIndex + stepCount * 2 + 1].duration * 1000 + 300);
     }
 
     //2022-3-27 modified by Cheng...
@@ -240,37 +230,21 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
 
         stepCount = 0
 
-        setPrimaryAudio(bodyAudio1s[0])
+        setPrimaryAudio(audioList[qSIndex])
         setRepeatAudio(audioList.commonAudio2)
 
         setTimeout(() => {
-
             blackWhiteObject.current.className = 'show halfOpacity'
             setLastLoaded(true)
-
             buttonRefs.current.className = 'hideObject'
 
             setTimeout(() => {
-
-                bodyAudio1s[0].play().catch(error => { });
+                audioList[qSIndex].play().catch(error => { });
                 setTimeout(() => {
-
-                    bodyAudio1s[1].src = getAudioPath('question/2/1')  //question
-                    bodyAudio2s[1].src = getAudioPath('question/2/2')  //answer
-
                     playZoomAnimation();
-
-                }, bodyAudio1s[0].duration * 1000 + 2000);
+                }, audioList[qSIndex].duration * 1000 + 2000);
             }, 3000);
-
         }, 500);
-
-        bodyAudio1s[0].src = getAudioPath('question/1/1')  //question
-        bodyAudio2s[0].src = getAudioPath('question/1/2')  //answer
-
-
-
-
     }
 
     const continueFirstPart = () => {
@@ -485,7 +459,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
                             <OptionScene
                                 ref={optionRef}
                                 transSignaler={transSignaler}
-                                continueSecondPart={continueSecondPart}
+                                continueSecondPart={startSecondPart}
                                 nextFunc={nextFunc}
                                 _baseGeo={_baseGeo}
                                 _geo={_geo} />

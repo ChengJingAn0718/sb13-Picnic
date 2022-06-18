@@ -25,7 +25,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc }, ref) => {
         sceneStart: () => {
             
             setExtraVolume(audioList.middleAudio, 4)
-            
+
             parentRef.current.className = 'aniObject'
             spakleRef.current.className = 'excellentText'
 
@@ -41,10 +41,10 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc }, ref) => {
                 setExtraVolume(audioList.buzzAudio, 2)
                 setExtraVolume(audioList.successAudio, 2)
 
-
                 timerList[1] = setTimeout(() => {
                     nextFunc();
                 }, audioList.middleAudio.duration * 1000 + 2500);
+                
             }, 3000);
         },
 

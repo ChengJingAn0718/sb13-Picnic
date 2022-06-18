@@ -50,6 +50,12 @@ Array.from(Array(14).keys()).map(value => {
     subAudioList.push(new loadSound('word/' + (value + 1)))
 })
 
+Array.from(Array(9).keys()).map(index => {
+    Array.from(Array(2).keys()).map(subIndex => {
+        subAudioList.push(new loadSound('question/' + (index + 1) + "/" + (subIndex + 1)))
+    })
+})
+
 backAudio.volume = 0.04;
 
 wooAudio.volume = 0.8;

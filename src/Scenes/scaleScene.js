@@ -96,7 +96,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
             setExtraVolume(audioList.bodyAudio1, 4)
             setExtraVolume(audioList.bodyAudio2, 3.5)
             setExtraVolume(audioList.bodyAudio3, 4)
-            
+
 
             loadFunc()
 
@@ -230,6 +230,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
 
                         setTimeout(() => {
                             if (currentMaskNum == maskPathList.length - 1) {
+                                // if (currentMaskNum == 0) {
                                 setTimeout(() => {
                                     baseObject.current.style.transition = '2s'
 
