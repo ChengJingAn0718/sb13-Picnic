@@ -119,7 +119,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
             setTimeout(() => {
                 audioList.bodyAudio2.play()
                 setTimeout(() => {
-                    setExtraVolume(audioList.bodyAudio2, 4)
+                    setExtraVolume(audioList.bodyAudio2, 5)
                     showIndividualImage()
                 }, audioList.bodyAudio2.duration * 1000 + 1000);
             }, 3000);
