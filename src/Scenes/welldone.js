@@ -39,7 +39,7 @@ const Scene = React.forwardRef(({ nextFunc, loadFunc, _baseGeo }, ref) => {
 
 
             for (let i = 0; i < 14; i++)
-                setExtraVolume(audioList[i], 4)
+                setExtraVolume(audioList[i], 5)
 
             timerList[0] = setTimeout(() => {
                 audioList.middleAudio.play().catch(error => { });
