@@ -15,13 +15,9 @@ const Scene = React.forwardRef(({ nextFunc, loadFunc, _baseGeo }, ref) => {
     const spakleRef = useRef()
 
     useEffect(() => {
-
         return () => {
-
         }
     }, [])
-
-
 
     React.useImperativeHandle(ref, () => ({
         sceneLoad: () => {
@@ -31,15 +27,12 @@ const Scene = React.forwardRef(({ nextFunc, loadFunc, _baseGeo }, ref) => {
             parentRef.current.className = 'aniObject'
             spakleRef.current.className = 'excellentText'
 
-
             loadFunc()
 
-            setExtraVolume(audioList.commonAudio3, 4)
-            setExtraVolume(audioList.reviewAudio, 4)
+            setExtraVolume(audioList.commonAudio3, 6)
+            setExtraVolume(audioList.reviewAudio, 6)
 
 
-            for (let i = 0; i < 14; i++)
-                setExtraVolume(audioList[i], 5)
 
             timerList[0] = setTimeout(() => {
                 audioList.middleAudio.play().catch(error => { });

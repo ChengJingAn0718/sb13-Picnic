@@ -95,6 +95,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo }, ref) => {
 
             setRepeatAudio(audioList.commonAudio3)
 
+
         },
         sceneEnd: () => {
         }
@@ -192,7 +193,11 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo }, ref) => {
 
         clickedList.push(index)
 
-        audioList[index].play();
+        setExtraVolume(audioList[index], 6)
+        setTimeout(() => {
+            audioList[index].play();
+        }, 50);
+
         if (clickedList.length == doneCount + wordGround[stepCount]) {
             setTimeout(() => {
                 if (stepCount != wordGround.length - 1)

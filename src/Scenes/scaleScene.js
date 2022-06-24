@@ -92,10 +92,11 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
         },
         sceneStart: () => {
 
+            // 5 to 6
 
-            setExtraVolume(audioList.bodyAudio1, 5)
-            setExtraVolume(audioList.bodyAudio2, 4)
-            setExtraVolume(audioList.bodyAudio3, 5)
+            setExtraVolume(audioList.bodyAudio1, 7)
+            setExtraVolume(audioList.bodyAudio2, 6)
+            setExtraVolume(audioList.bodyAudio3, 7)
 
 
             loadFunc()
@@ -119,7 +120,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
             setTimeout(() => {
                 audioList.bodyAudio2.play()
                 setTimeout(() => {
-                    setExtraVolume(audioList.bodyAudio2, 5)
+                    setExtraVolume(audioList.bodyAudio2, 7)
                     showIndividualImage()
                 }, audioList.bodyAudio2.duration * 1000 + 1000);
             }, 3000);
@@ -147,7 +148,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
 
         const currentIndex = isEven ? 0 : 1
 
-        let currentMaskName = maskPathList[currentMaskNum]
+        let currentMaskName = maskPathList[currentMaskNum][0]
 
         baseObject.current.style.transition = durationList[currentMaskNum] + 's'
         baseObject.current.style.transform =
@@ -230,7 +231,6 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
 
                         setTimeout(() => {
                             if (currentMaskNum == maskPathList.length - 1) {
-                                // if (currentMaskNum == 0) {
                                 setTimeout(() => {
                                     baseObject.current.style.transition = '2s'
 
@@ -259,7 +259,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, loadFunc, bgLoaded }, ref)
 
                                 currentMaskNum++;
 
-                                currentMaskName = maskPathList[currentMaskNum]
+                                currentMaskName = maskPathList[currentMaskNum][0]
                                 if (currentMaskName != 'sub') {
                                     if (currentMaskNum < maskPathList.length - 1)
                                         blackWhiteObjects[currentIndex].current.style.WebkitMaskImage =

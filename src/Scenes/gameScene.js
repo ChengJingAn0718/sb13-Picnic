@@ -67,12 +67,12 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
 
             loadFunc()
 
-            setExtraVolume(audioList.commonAudio2, 5)
-            setExtraVolume(audioList.commonAudio1, 5)
+            setExtraVolume(audioList.commonAudio2, 6)
+            setExtraVolume(audioList.commonAudio1, 6)
 
             for (let i = qSIndex; i < qSIndex + 18; i++)
-                setExtraVolume(audioList[i], 5)
-                
+                setExtraVolume(audioList[i], 6)
+
         },
         sceneEnd: () => {
             setSceneLoad(false)
@@ -102,7 +102,8 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
     }
 
     const showControlFunc = () => {
-        blackWhiteObject.current.style.WebkitMaskImage = 'url("' + prePathUrl() + 'images/question/' + (stepCount + 2) + '/m.png")'
+        if (stepCount < questionPartCount - 1)
+            blackWhiteObject.current.style.WebkitMaskImage = 'url("' + prePathUrl() + 'images/question/' + (stepCount + 2) + '/m.png")'
 
         if (stepCount < questionPartCount - 2)
             aniImageLists[cIndex].map((image, index) => {
@@ -444,7 +445,7 @@ const Scene = React.forwardRef(({ nextFunc, _baseGeo, _geo, loadFunc }, ref) => 
                                             top: '-32%'
                                         }}
                                         draggable={false}
-                                        src={prePathUrl() + 'images/Buttons/Answer_Button.svg'}
+                                        src={prePathUrl() + 'images/buttons/answer_button.svg'}
                                     />
                                 </div>
                             </div>

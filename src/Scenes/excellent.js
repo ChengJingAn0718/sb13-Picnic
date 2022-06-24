@@ -16,7 +16,7 @@ export default function Scene18({ nextFunc, _geo, _baseGeo }) {
     useEffect(() => {
         setRepeatAudio(audioList.replayAudio)
 
-        setExtraVolume(audioList.excellentAudio, 4)
+        setExtraVolume(audioList.excellentAudio, 6)
         setExtraVolume(audioList.replayAudio, 4)
 
         setRepeatType(2)
@@ -122,7 +122,7 @@ export default function Scene18({ nextFunc, _geo, _baseGeo }) {
 
                         width={"100%"}
                         draggable={false}
-                        src={prePathUrl() + 'images/Buttons/Replay_Blue.svg'}
+                        src={prePathUrl() + 'images/buttons/replay_blue.svg'}
                     />
                 </div>
             </div>
